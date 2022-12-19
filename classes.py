@@ -33,16 +33,17 @@ class Bed:
         return f'Bed; id: {self.id}, type: {self.type}, available: {self.available}'
 
 class Booking:
-    def __init__(self, bed, startDate, endDate):
+    def __init__(self, bed, start_date, end_date):
         self.bed = bed
-        self.startDate = startDate
-        self.endDate = endDate
+        self.start_date = start_date
+        self.end_date = end_date
         self.active = True
         print(f'Booking created for {bed}')
-    def finishBooking(self):
+    def finishBooking(self, end_date):
         self.active = False
+        self.end_date = end_date
     def __str__(self) -> str:
-        return f'Booking: {self.bed}, startDate: {self.startDate}, endDate: {self.endDate}, active: {self.active}'
+        return f'Booking: {self.bed}, start_date: {self.start_date}, end_date: {self.end_date}, active: {self.active}'
 
 # guest books one or many beds.
 class Guest:
@@ -59,11 +60,11 @@ class Guest:
         # make reservation
         bed.reserve()
         print('Bed should be reserved!')
-    def releaseBed(self, bed):
+    def releaseBed(self, bed, end_date):
         # make booking deactive
         book = self.findBooking(bed)
         if book is not None:
-            book.finishBooking()
+            book.finishBooking(end_date)
             # make bad available again
             bed.release()
         else:

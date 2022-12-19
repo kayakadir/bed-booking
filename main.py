@@ -31,6 +31,6 @@ guest1.allBookings()
 
 # release bed
 print('releasing bed')
-guest1.releaseBed(b1)
+guest1.releaseBed(b1, dt.datetime.now())
 daire8.findEmptyBeds()
 guest1.allBookings()
